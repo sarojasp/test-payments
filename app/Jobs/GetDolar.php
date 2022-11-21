@@ -46,19 +46,20 @@ class GetDolar implements ShouldQueue
 
         if ($isSameDay) 
         {
+            // Use save value of the day
             $this->payment->clp_usd = number_format($lastPayment->clp_usd);
-            $this->payment->status  = 'paid';
-            $this->payment->save();
-
         }else{
-
+            // Get API value
             $response = Http::get('https://mindicador.cl/api/dolar')->json();
             $precioDolar = number_format($response['serie'][0]['valor'],0);
 
             $this->payment->clp_usd = $precioDolar;
-            $this->payment->status  = 'paid';
-            $this->payment->save();
+            
         }
+
+        $this->payment->payment_date = Carbon::now();
+        $this->payment->status  = 'paid';
+        $this->payment->save();
 
     }
 }

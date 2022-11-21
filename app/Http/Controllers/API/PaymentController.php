@@ -103,10 +103,13 @@ class PaymentController extends Controller
 
             if ($payment) 
             {
+                // Call the Dollar Job
                 GetDolar::dispatch($payment);
 
+                // Send Mail Event
                 event(New RegisterPayment($payment));
 
+                // Return object
                 $payment = (object) [
                     'uuid' => $payment->uuid,
                     'payment_date' => $payment->payment_date,
