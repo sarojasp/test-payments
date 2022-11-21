@@ -16,7 +16,7 @@ class TestSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // Create 3 Client with randon 5 Payment
         for ($i=0; $i < 3 ; $i++) 
         { 
             $client = Client::factory()->create();

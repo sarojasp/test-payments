@@ -15,11 +15,13 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        $this->call([
-            TestSeeder::class,
-        ]);
-
-
+        // Load production seeder
+        if (config('app.env') === 'production') 
+        {
+            // Call production Seeder
+        } else {
+            $this->call(TestSeeder::class);
+        }
     }
 }
 
