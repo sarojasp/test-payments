@@ -24,7 +24,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('payments', PaymentController::class);
 Route::resource('clients', ClientController::class);
 
-
-
-// Route::get('/payments/client/{client}', [PaymentController::class, 'getPayments']);
-
